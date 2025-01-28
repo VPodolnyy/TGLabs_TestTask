@@ -49,7 +49,7 @@ const config = {
   css: {
     preprocessorOptions: {
        stylus: {
-         imports: [Path.resolve(__dirname, 'src/styles/Global/colors.styl')]
+         imports: [Path.resolve(__dirname, 'src/styles/colors.styl')]
        }
     }
   },
