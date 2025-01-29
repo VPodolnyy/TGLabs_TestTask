@@ -1,27 +1,40 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watchEffect, onMounted } from 'vue'
 import SquareInfo from './SquareInfo.vue'
+
+const squares = ref([])
+const lsSquares = JSON.parse(localStorage.getItem('squares'))
+
+if (lsSquares.length) {
+  squares.value = lsSquares
+} else {
+  squares.value = [
+    {
+      place: 1,
+      quantity: 4,
+      content: '<svg width="54" height="54" viewBox="0 0 54 54"><rect y="6" width="48" height="48" fill="#7FAA65"/><rect x="6" width="48" height="48" fill="#B8D998" fill-opacity="0.35"/></svg>'
+    },
+    {
+      place: 2,
+      quantity: 2,
+      content: '<svg width="54" height="54" viewBox="0 0 54 54"><rect y="6" width="48" height="48" fill="#AA9765"/><rect x="6" width="48" height="48" fill="#D9BB98" fill-opacity="0.35"/></svg>'
+    },
+    {
+      place: 3,
+      quantity: 5,
+      content: '<svg width="54" height="54" viewBox="0 0 54 54"><rect y="6" width="48" height="48" fill="#656CAA"/><rect x="6" width="48" height="48" fill="#7481ED" fill-opacity="0.35"/></svg>'
+    }
+  ]
+}
 
 const quantityBlocks = 25
 const flagSquareInfo = ref(false)
 const activeSquare = ref(null)
-const squares = ref([
-  {
-    place: 1,
-    quantity: 4,
-    content: '<svg width="54" height="54" viewBox="0 0 54 54"><rect y="6" width="48" height="48" fill="#7FAA65"/><rect x="6" width="48" height="48" fill="#B8D998" fill-opacity="0.35"/></svg>'
-  },
-  {
-    place: 2,
-    quantity: 2,
-    content: '<svg width="54" height="54" viewBox="0 0 54 54"><rect y="6" width="48" height="48" fill="#AA9765"/><rect x="6" width="48" height="48" fill="#D9BB98" fill-opacity="0.35"/></svg>'
-  },
-  {
-    place: 3,
-    quantity: 5,
-    content: '<svg width="54" height="54" viewBox="0 0 54 54"><rect y="6" width="48" height="48" fill="#656CAA"/><rect x="6" width="48" height="48" fill="#7481ED" fill-opacity="0.35"/></svg>'
-  }
-])
+
+watchEffect(() => {
+  const parsed = JSON.stringify(squares.value)
+  localStorage.setItem('squares', parsed)
+})
 
 function content (index) {
   const square = squares.value.find(square => square.place === index)
