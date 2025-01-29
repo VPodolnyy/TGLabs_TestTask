@@ -16,26 +16,26 @@ export default {
     height: {
       type: String,
       default: '8',
-      validator (value) {
-        // Значение должно соответствовать одной из этих строк
-        return ['2', '3', '4', '5', '6', '7', '8'].includes(value)
-      }
+      // validator (value) {
+      //   // Значение должно соответствовать одной из этих строк
+      //   return ['2', '3', '4', '5', '6', '7', '8'].includes(value)
+      // }
     },
     width: {
       type: String,
       default: '',
-      validator (value) {
-        // Значение должно соответствовать одной из этих строк
-        return ['', '1', '2', '3', '4', '5', '6', '7', '8'].includes(value)
-      }
+      // validator (value) {
+      //   // Значение должно соответствовать одной из этих строк
+      //   return ['', '1', '2', '3', '4', '5', '6', '7', '8'].includes(value)
+      // }
     },
     grow: {
       type: String,
       default: '1',
-      validator (value) {
-        // Значение должно соответствовать одной из этих строк
-        return ['1', '2', '3', '4', '5', '6', '7', '8'].includes(value)
-      } 
+      // validator (value) {
+      //   // Значение должно соответствовать одной из этих строк
+      //   return ['1', '2', '3', '4', '5', '6', '7', '8'].includes(value)
+      // } 
     }
   },
   computed: {
@@ -63,7 +63,8 @@ export default {
   &.grey
     background-color $grey-light
   &.white
-    background-color $white
+    // background-color $white
+    background linear-gradient(90deg, #3C3C3C 0%, #444444 51.04%, #333333 100%)
   &:after
     content ''
     position absolute
@@ -81,7 +82,7 @@ export default {
     //   $grey-light,
     //   $white
     // )
-    animation shimmer 1.5s infinite
+    // animation shimmer 1.5s infinite
   @keyframes shimmer
     100%
       transform translateX(100%)
